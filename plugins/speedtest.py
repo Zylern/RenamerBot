@@ -20,7 +20,7 @@ async def start(_, hola: Message):
            f"{speed_convert(result['upload'])} \n"
           "**➩ Ping:** "
            f"{result['ping']} \n"
-          "**➩ ISP**: "
+          "**➩ ISP:** "
            f"{result['client']['isp']}")
 
 def speed_convert(size):
