@@ -11,7 +11,11 @@ Add Custom Thumbnail
 ## Credits, and Thanks to Beloved Developers ;
 
 [Original Repo](https://github.com/No-OnE-Kn0wS-Me/FileRenameBot)
+
 [SpEcHlDe](https://telegram.dog/SpEcHlDe) 
+
 [Dan Tès](https://telegram.dog/haskell) 
+
 [Yoily](https://telegram.dog/YoilyL)
+
 [Anand](https://telegram.dog/Anandpskerala)
