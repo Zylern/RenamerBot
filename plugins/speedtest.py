@@ -13,7 +13,7 @@ async def start(_, hola: Message):
     test.results.share()
     result = test.results.dict()
     await hola.reply(
-        text="`"
+        text=
            "**➩ Download:** "
            f"{speed_convert(result['download'])} \n"
            "**➩ Upload:** "
