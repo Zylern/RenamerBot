@@ -117,6 +117,8 @@ async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
             await query.message.reply_text(
                 text = "<b>Process Cancelled</b>"
      )
+        except:
+            pass 
     elif data == "ghelp":
         await query.message.edit_text(
             text=Translation.HELP_USER,
@@ -129,11 +131,14 @@ async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
                 ],
                 [
                     InlineKeyboardButton('🎞️Custom Thumbnail', callback_data = "cthumb"),
+                    InlineKeyboardButton('📑Custom Caption', callback_data = "ccaption")
+                ],
+                [
                     InlineKeyboardButton('💬About', callback_data = "about")
                 ]
             ]
         )
-     )
+    )
      elif data == "about":
         await query.message.edit_text(
             text=Translation.ABOUT_ME,
