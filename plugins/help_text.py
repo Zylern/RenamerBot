@@ -117,8 +117,6 @@ async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
             await query.message.reply_text(
                 text = "<b>Process Cancelled</b>"
      )
-        except:
-            pass 
     elif data == "ghelp":
         await query.message.edit_text(
             text=Translation.HELP_USER,
