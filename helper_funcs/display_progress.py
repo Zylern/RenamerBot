@@ -1,3 +1,4 @@
+
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -12,18 +13,19 @@ if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
     from config import Config
-
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 # the Strings used for this "thing"
 from translation import Translation
 
 
-async def progress_for_pyrogram(
-    current,
-    total,
-    ud_type,
-    message,
-    start
-):
+async def progress_for_pyrogram(current, total, ud_type, message, start):
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("🚫Cancel", callback_data = "closeme")
+                ]
+            ]
+        )
     now = time.time()
     diff = now - start
     if round(diff % 10.00) == 0 or current == total:
@@ -37,9 +39,9 @@ async def progress_for_pyrogram(
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-        progress = "[{0}{1}] \n <b>➩ Progress:</b> {2}%\n\n".format(
-            ''.join(["✅" for i in range(math.floor(percentage / 5))]),
-            ''.join(["❌" for i in range(20 - math.floor(percentage / 5))]),
+        progress = "[{0}{1}] \n <b>📊Percentage:</b> {2}%\n".format(
+            ''.join(["■" for i in range(math.floor(percentage / 5))]),
+            ''.join(["□" for i in range(20 - math.floor(percentage / 5))]),
             round(percentage, 2))
 
         tmp = "\n<b>➩ Progress:</b> {0} \n\n<b>➩ Total Size:</b> {1}\n\n<b>➩ Speed:</b> {2}/s\n\n<b>➩ Time Left:</b> {3}\n".format(
@@ -51,10 +53,7 @@ async def progress_for_pyrogram(
         )
         try:
             await message.edit(
-                text="{}\n {}".format(
-                    ud_type,
-                    tmp
-                )
+                text="{}\n {}".format(ud_type,tmp), reply_markup=reply_markup
             )
         except:
             pass
@@ -65,7 +64,7 @@ def humanbytes(size):
     # 2**10 = 1024
     if not size:
         return ""
-    power = 2**10
+    power = 2 ** 10
     n = 0
     Dic_powerN = {0: ' ', 1: 'K', 2: 'M', 3: 'G', 4: 'T'}
     while size > power:
@@ -80,8 +79,8 @@ def TimeFormatter(milliseconds: int) -> str:
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = ((str(days) + "d, ") if days else "") + \
-        ((str(hours) + "h, ") if hours else "") + \
-        ((str(minutes) + "m, ") if minutes else "") + \
-        ((str(seconds) + "s, ") if seconds else "") + \
-        ((str(milliseconds) + "ms, ") if milliseconds else "")
+          ((str(hours) + "h, ") if hours else "") + \
+          ((str(minutes) + "m, ") if minutes else "") + \
+          ((str(seconds) + "s, ") if seconds else "") + \
+          ((str(milliseconds) + "ms, ") if milliseconds else "")
     return tmp[:-2]
