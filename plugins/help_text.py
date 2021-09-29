@@ -128,7 +128,7 @@ async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
             ]
         )
      )
-         elif data == "closeme":
+     elif data == "closeme":
         await query.message.delete()
         try:
             await query.message.reply_text(
