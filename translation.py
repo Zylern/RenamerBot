@@ -1,5 +1,5 @@
 class Translation(object):
-    START_TEXT = """<i>Guide To Use this Bot</i>\n</b></i>\n\n✘ /rename : **Reply To An File/video With /rename Filename.extension For Renaming.**\n\n✘ /c2v : **Reply To An File With /c2v To Convert It Into Video.**\n\n✘ /showthumb : **For Checking The Current Thumbnail.**\n\n✘ /delthumb : **For Deleting The Current Saved Thumbnail.**\n\n✘ **Send A Photo To Set The Custom Thumbnail.**"""
+    START_TEXT = """<i>Guide To Use this Bot</i></b></i>\n\n✘ /rename : **Reply To An File/video With /rename Filename.extension For Renaming.**\n\n✘ /c2v : **Reply To An File With /c2v To Convert It Into Video.**\n\n✘ /showthumb : **For Checking The Current Thumbnail.**\n\n✘ /delthumb : **For Deleting The Current Saved Thumbnail.**\n\n✘ **Send A Photo To Set The Custom Thumbnail.**"""
     RENAME_403_ERR = "What Are You Doing? Bruuh!!"
     BANNED_USER_TEXT = "Sorry!! But You are Banned From Using This Service. " 
     ABS_TEXT = "What Are You Trying To Do,Mate?"
