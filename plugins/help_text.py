@@ -28,8 +28,6 @@ else:
 from translation import Translation
 
 
-
-
 #from helper_funcs.chat_base import TRChatBase
 
 def GetExpiryDate(chat_id):
@@ -130,6 +128,14 @@ async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
             ]
         )
      )
+         elif data == "closeme":
+        await query.message.delete()
+        try:
+            await query.message.reply_text(
+                text = "<b>Process Cancelled</b>"
+     )
+        except:
+            pass
     elif data == "about":
         await query.message.edit_text(
             text=Translation.ABOUT_ME,
@@ -138,6 +144,98 @@ async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
             [
                 [
                     InlineKeyboardButton('Back', callback_data = "ghelp"),
+                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                ]
+            ]
+        )
+     )
+    elif data == "close":
+        await query.message.delete()
+        try:
+            await query.message.reply_to_message.delete()
+        except:
+            pass
+
+
+
+elif data == "cthumb":
+        await query.message.edit_text(
+            text=Translation.THUMBNAIL_HELP,
+            disable_web_page_preview = True,
+            reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('Back', callback_data = "ghelp"),
+                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                ]
+            ]
+        )
+     )
+    elif data == "ghelp":
+        await query.message.edit_text(
+            text=Translation.HELP_USER,
+            disable_web_page_preview = True,
+            reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('📝Rename', callback_data = "rnme"),
+                    InlineKeyboardButton('📂File To Video', callback_data = "f2v")
+                ],
+                [
+                    InlineKeyboardButton('🎞️Custom Thumbnail', callback_data = "cthumb"),
+                    InlineKeyboardButton('📑Custom Caption', callback_data = "ccaption")
+                ],
+                [
+                    InlineKeyboardButton('💬About', callback_data = "about")
+                ]
+            ]
+        )
+    )       
+
+    elif data =="shw_caption":
+             try:
+                caption = await get_caption(query.from_user.id)
+                c_text = caption.caption
+             except:
+                c_text = "Sorry but you haven't added any caption yet please set your caption through /scaption command" 
+             await query.message.edit(
+                  text=f"<b>Your Custom Caption:</b> \n\n{c_text} ",
+                  parse_mode="html", 
+                  disable_web_page_preview=True, 
+                  reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('Back', callback_data = "ccaption"),
+                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                ]
+            ]
+        )
+     )
+    elif data == "about":
+        await query.message.edit_text(
+            text=Translation.ABOUT_ME,
+            disable_web_page_preview = True,
+            reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('Back', callback_data = "ghelp"),
+                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                ]
+            ]
+        )
+     )
+    elif data == "d_caption":
+        try:
+           await del_caption(query.from_user.id)   
+        except:
+            pass
+        await query.message.edit_text(
+            text="<b>caption deleted successfully</b>",
+            disable_web_page_preview = True,
+            reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('Back', callback_data = "ccaption"),
                     InlineKeyboardButton("🔒 Close", callback_data = "close")
                 ]
             ]
