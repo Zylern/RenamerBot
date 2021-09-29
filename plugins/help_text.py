@@ -69,6 +69,7 @@ async def start_me(bot, update):
     )
 
 
+
 @Mai_bOTs.on_callback_query()
 async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
     data = query.data
@@ -138,8 +139,8 @@ async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
                 ]
             ]
         )
-    )
-     elif data == "about":
+    )       
+    elif data == "about":
         await query.message.edit_text(
             text=Translation.ABOUT_ME,
             disable_web_page_preview = True,
@@ -158,4 +159,7 @@ async def cb_handler(client: Mai_bOTs , query: CallbackQuery):
             await query.message.reply_to_message.delete()
         except:
             pass
+
+
+
 
